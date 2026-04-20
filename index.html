@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Календарь мероприятий</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="logo-slot">
+          <img src="assets/logo.png" alt="Логотип организации" id="siteLogo" />
+        </div>
+      </header>
+
+      <main class="calendar-page">
+        <section class="calendar-card">
+          <div class="calendar-topbar">
+            <button class="month-arrow" id="prevMonthBtn" aria-label="Предыдущий месяц">‹</button>
+            <div class="month-title-wrap">
+              <p class="eyebrow">Календарь мероприятий</p>
+              <h1 id="monthTitle">Март 2026</h1>
+              <p class="helper-text">Нажмите на мероприятие, чтобы открыть карточку. Нажмите на пустую дату, чтобы добавить новое событие.</p>
+            </div>
+            <button class="month-arrow" id="nextMonthBtn" aria-label="Следующий месяц">›</button>
+          </div>
+
+          <div class="months-switcher" id="monthsSwitcher"></div>
+
+          <div class="weekdays" id="weekdaysRow"></div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="overlay hidden" id="eventModalOverlay">
+      <div class="modal detail-modal">
+        <button class="modal-close" id="closeEventModal" aria-label="Закрыть">×</button>
+        <div class="modal-image-wrap">
+          <img src="assets/placeholder-event.png" alt="Фото мероприятия" id="eventModalImage" />
+        </div>
+        <div class="modal-content">
+          <p class="modal-date" id="eventModalDate"></p>
+          <h2 id="eventModalTitle"></h2>
+          <p class="modal-description" id="eventModalDescription"></p>
+          <div class="modal-actions">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="primary-action" id="eventModalAction">Участвовать</a>
+            <button class="secondary-action" id="editEventBtn">Редактировать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="adminModalOverlay">
+      <div class="modal admin-modal">
+        <button class="modal-close" id="closeAdminModal" aria-label="Закрыть">×</button>
+        <div class="modal-content">
+          <p class="modal-date" id="adminModalDate"></p>
+          <h2 id="adminModalTitle">Добавить мероприятие</h2>
+          <form id="eventForm" class="event-form">
+            <label>
+              Дата
+              <input type="date" id="formDate" required />
+            </label>
+
+            <label>
+              Название мероприятия
+              <input type="text" id="formTitle" placeholder="Например: Молодецкая Удаль" required />
+            </label>
+
+            <label>
+              Короткое описание
+              <textarea id="formDescription" rows="5" placeholder="Опишите мероприятие"></textarea>
+            </label>
+
+            <label>
+              Фото мероприятия
+              <input type="text" id="formImage" placeholder="assets/placeholder-event.png или ссылка на картинку" />
+            </label>
+
+            <div class="form-row">
+              <label>
+                Статус
+                <select id="formStatus">
+                  <option value="upcoming">Скоро будет</option>
+                  <option value="past">Уже прошло</option>
+                </select>
+              </label>
+
+              <label>
+                Текст кнопки
+                <input type="text" id="formButtonLabel" placeholder="Участвовать" />
+              </label>
+            </div>
+
+            <label>
+              Ссылка кнопки
+              <input type="text" id="formButtonUrl" placeholder="https://..." />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-action">Сохранить</button>
+              <button type="button" class="secondary-action" id="deleteEventBtn">Удалить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="events.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
